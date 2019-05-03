@@ -19,7 +19,9 @@ public:
 	char* getName();
 	bool removeEdge(Vertex* connected);
 	bool removeEdge(char* connected);
-	void addConnection(Vertex* next);
+	void addConnection(Vertex* next, int weight);
+
+	void printConnections();
 private:
 
 

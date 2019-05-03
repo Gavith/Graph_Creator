@@ -1,6 +1,7 @@
 #include "Vertex.h"
+#include <iostream>
 
-
+using namespace std;
 
 Vertex::Vertex()
 {
@@ -8,7 +9,7 @@ Vertex::Vertex()
 
 Vertex::Vertex(const char * name)
 {
-	this->name = new char(strlen(name) + 1);
+	this->name = new char((int)strlen(name) + 1);
 	strcpy(this->name, name);
 }
 
@@ -21,7 +22,7 @@ Vertex::~Vertex()
 void Vertex::setName(const char * name)
 {
 	if (this->name) delete this->name;
-	this->name = new char(strlen(name) + 1);
+	this->name = new char((int)strlen(name) + 1);
 	strcpy(this->name, name);
 }
 
@@ -52,8 +53,16 @@ bool Vertex::removeEdge(char * connected)
 	return false;
 }
 
-void Vertex::addConnection(Vertex * next)
+void Vertex::addConnection(Vertex * next, int weight)
 {
 	Edge* newEdge = new Edge(next);
+	newEdge->weight = weight;
 	connections.push_back(newEdge);
+}
+
+void Vertex::printConnections()
+{
+	for (auto i = connections.begin(); i != connections.end(); i++) {
+		cout << (*i)->next->getName() << " " << (*i)->weight << endl;
+	}
 }

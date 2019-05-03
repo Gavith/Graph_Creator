@@ -8,5 +8,9 @@ int main()
 	Graph g = Graph();
 	g.addNode("Test");
 	g.addNode("Test2");
-	cout << "yeah"; 
+	g.addConnection("Test", "Test2", 20);
+	g.addConnection("Test2", "Test", 30);
+	
+	g.printNodes();
+	g.printConnections("Test");
 }

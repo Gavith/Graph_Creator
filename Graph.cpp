@@ -73,6 +73,42 @@ Vertex * Graph::getNode(const char * name)
 	return nullptr;
 }
 
+void Graph::removeNode(const char * name)
+{
+	for (auto i = nodes.begin(); i != nodes.end(); i++) {
+		if (strcmp((*i)->getName, name) == 0) {
+			nodes.erase(i);
+		}
+	}
+}
+
+void Graph::removeNode(Vertex * v)
+{
+	for (auto i = nodes.begin(); i != nodes.end(); i++) {
+		if ((*i) == v) { 
+			nodes.erase(i);
+		}
+	}
+}
+
+void Graph::removeConnection(const char * name1, const char * name2)
+{
+	for (auto i = nodes.begin(); i != nodes.end(); i++) {
+		if (strcmp((*i)->getName, name1) == 0) {
+			getNode(name1)->removeConnection(getNode(name2));
+		}
+	}
+}
+
+void Graph::removeConnection(Vertex * v1, Vertex * v2)
+{
+	for (auto i = nodes.begin(); i != nodes.end(); i++) {
+		if ((*i) == v1) {
+			v1->removeConnection(v2);
+		}
+	}
+}
+
 void Graph::printNodes()
 {
 	cout << endl;

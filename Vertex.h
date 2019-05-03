@@ -20,7 +20,7 @@ public:
 	bool removeEdge(Vertex* connected);
 	bool removeEdge(char* connected);
 	void addConnection(Vertex* next, int weight);
-
+	void removeConnection(Vertex* next);
 	void printConnections();
 private:
 

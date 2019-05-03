@@ -15,6 +15,11 @@ public:
 	bool findNode(Vertex* node);
 	Vertex* getNode(const char* name);
 	
+	void removeNode(const char* name);
+	void removeNode(Vertex* v);
+	void removeConnection(const char* name1, const char* name2);
+	void removeConnection(Vertex* v1, Vertex* v2);
+	
 
 	void printNodes();
 	void printConnections(const char* name);

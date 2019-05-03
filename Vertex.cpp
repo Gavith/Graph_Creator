@@ -9,7 +9,7 @@ Vertex::Vertex()
 
 Vertex::Vertex(const char * name)
 {
-	this->name = new char((int)strlen(name) + 1);
+	this->name = new char[(int)strlen(name) + 1];
 	strcpy(this->name, name);
 }
 
@@ -22,7 +22,7 @@ Vertex::~Vertex()
 void Vertex::setName(const char * name)
 {
 	if (this->name) delete this->name;
-	this->name = new char((int)strlen(name) + 1);
+	this->name = new char[(int)strlen(name) + 1];
 	strcpy(this->name, name);
 }
 
@@ -58,6 +58,15 @@ void Vertex::addConnection(Vertex * next, int weight)
 	Edge* newEdge = new Edge(next);
 	newEdge->weight = weight;
 	connections.push_back(newEdge);
+}
+
+void Vertex::removeConnection(Vertex * next)
+{
+	for (auto i = connections.begin(); i != connections.end(); i++) {
+		if ((*i)->next == next) {
+			connections.erase(i);
+		}
+	}
 }
 
 void Vertex::printConnections()

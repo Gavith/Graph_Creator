@@ -1,6 +1,7 @@
 #pragma once
 #include "Vertex.h"
 #include <iostream>
+constexpr auto INF = -1; //using -1 as infinity as a placeholder;;
 
 class Graph
 {
@@ -20,7 +21,7 @@ public:
 	void removeConnection(const char* name1, const char* name2);
 	void removeConnection(Vertex* v1, Vertex* v2);
 	
-
+	vector<Vertex*> dijkstra(vector<Vertex*> graph, Vertex* source);
 	void printNodes();
 	void printConnections(const char* name);
 

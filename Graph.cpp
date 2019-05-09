@@ -1,5 +1,5 @@
 #include "Graph.h"
-
+#include "Map.h"
 
 
 Graph::Graph()
@@ -76,7 +76,7 @@ Vertex * Graph::getNode(const char * name)
 void Graph::removeNode(const char * name)
 {
 	for (auto i = nodes.begin(); i != nodes.end(); i++) {
-		if (strcmp((*i)->getName, name) == 0) {
+		if (strcmp((*i)->getName(), name) == 0) {
 			nodes.erase(i);
 		}
 	}
@@ -94,7 +94,7 @@ void Graph::removeNode(Vertex * v)
 void Graph::removeConnection(const char * name1, const char * name2)
 {
 	for (auto i = nodes.begin(); i != nodes.end(); i++) {
-		if (strcmp((*i)->getName, name1) == 0) {
+		if (strcmp((*i)->getName(), name1) == 0) {
 			getNode(name1)->removeConnection(getNode(name2));
 		}
 	}
@@ -107,6 +107,25 @@ void Graph::removeConnection(Vertex * v1, Vertex * v2)
 			v1->removeConnection(v2);
 		}
 	}
+}
+
+vector<Vertex*> Graph::dijkstra(vector<Vertex*> graph, Vertex * source)
+{
+	vector<Vertex*> Q;//out 
+	Map<Vertex*, int> dist;//all nodes
+	
+	dist.put(source, 0);
+	for (auto i = graph.begin(); i != graph.end(); i++) {
+		if ((*i) != source) {
+			dist.put(source, INF);
+		}
+		Q.push_back(*i);
+	}
+
+	while (!Q.empty()) {
+		for(auto i = dist.begin(); i != dist.end(); i++)
+	}
+
 }
 
 void Graph::printNodes()

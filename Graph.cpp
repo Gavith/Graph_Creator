@@ -178,15 +178,21 @@ vector<Vertex*> Graph::dijkstra(vector<Vertex*> graph, Vertex * source, Vertex *
 	
 	
 	dist.put(source, 0);
+	Q.push_back(source);
 	for (auto i = graph.begin(); i != graph.end(); i++) {//set all lengths to infinity
 		if ((*i) != source) {
 			dist.put(*i, INF);
+			Q.push_back(*i);
 		}
-		Q.push_back(*i);//add it to the lsit
+		//add it to the lsit
 	}
 
 	while (!Q.empty()) {//while there are still nodes
 		Vertex* min = *(Q.begin());
+		for (auto i = Q.begin(); dist.get(min) == -1 && i != Q.end(); i++) {
+			min = *i;
+		}
+		
 		for (auto i = Q.begin(); i != Q.end(); i++)//find min
 			if (dist.get(*i) < dist.get(min) && dist.get(*i) != INF)
 				min = *i;

@@ -1,5 +1,5 @@
 #include "Edge.h"
-
+//Nothin fancy in this class
 Edge::Edge()
 {
 

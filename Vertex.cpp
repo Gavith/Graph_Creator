@@ -33,16 +33,16 @@ char * Vertex::getName()
 
 bool Vertex::removeEdge(Vertex * connected)
 {
-	for (auto i = connections.begin(); i != connections.end(); i++) {
+	for (auto i = connections.begin(); i != connections.end(); i++) {//finds it
 		if ((*i)->next == connected) {
-			connections.erase(i);
+			connections.erase(i);//erases and returns so it doesnt iterate past
 			return true;
 		}
 	}
 	return false;
 }
 
-bool Vertex::removeEdge(char * connected)
+bool Vertex::removeEdge(char * connected)//same as previous
 {
 	for (auto i = connections.begin(); i != connections.end(); i++) {
 		if (strcmp((*i)->next->getName(), connected) == 0) {
@@ -53,7 +53,7 @@ bool Vertex::removeEdge(char * connected)
 	return false;
 }
 
-void Vertex::addConnection(Vertex * next, int weight)
+void Vertex::addConnection(Vertex * next, int weight)//pushes to vector
 {
 	Edge* newEdge = new Edge(next);
 	newEdge->weight = weight;
@@ -62,17 +62,18 @@ void Vertex::addConnection(Vertex * next, int weight)
 
 void Vertex::removeConnection(Vertex * next)
 {
-	for (auto i = connections.begin(); i != connections.end(); i++) {
+	for (auto i = connections.begin(); i != connections.end(); i++) {//finds it
 		if ((*i)->next == next) {
-			delete *i;
+			delete *i;//makes sure nothing breaks
 			connections.erase(i);
+			break;
 		}
 	}
 }
 
 bool Vertex::findConnection(Vertex * vert)
 {
-	for (auto i = connections.begin(); i != connections.end(); i++) {
+	for (auto i = connections.begin(); i != connections.end(); i++) {//basic check and sees if its there
 		if ((*i)->next == vert) {
 			return true;
 		}
@@ -80,7 +81,7 @@ bool Vertex::findConnection(Vertex * vert)
 	return false;
 }
 
-bool Vertex::findConnection(const char * vert)
+bool Vertex::findConnection(const char * vert)//same as above
 {
 	for (auto i = connections.begin(); i != connections.end(); i++) {
 		if (strcmp((*i)->next->getName(), vert) == 0) {
@@ -97,7 +98,7 @@ vector<Edge*> Vertex::getConnections()
 
 void Vertex::printConnections()
 {
-	for (auto i = connections.begin(); i != connections.end(); i++) {
-		cout << (*i)->next->getName() << " " << (*i)->weight << endl;
+	for (auto i = connections.begin(); i != connections.end(); i++) {//a way to see all connections
+		cout << "to: " << (*i)->next->getName() << " weight: " << (*i)->weight << endl;
 	}
 }

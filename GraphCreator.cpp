@@ -12,7 +12,8 @@ int main()
 		cout << "1) add" << endl
 			<< "2) remove" << endl
 			<< "3) shortest" << endl
-			<< "4) quit" << endl;
+			<< "4) print" << endl
+			<< "5) quit" << endl;
 		cin.get(input, 10);
 		cin.ignore(1000, '\n');
 		if (strcmp(input, "add") == 0) {//adding
@@ -34,7 +35,9 @@ int main()
 				cout << "Vertex 2? ";
 				cin.get(input, 10);
 				cin.ignore(1000, '\n');
+				cout << "Weight? ";
 				cin >> weight;
+				cin.ignore(1000, '\n');
 				g.addConnection(in1, input, weight);
 				delete[] in1;
 			}
@@ -62,12 +65,37 @@ int main()
 				cout << "Vertex 2? ";
 				cin.get(input, 10);
 				cin.ignore(1000, '\n');
-				if()
-				g.removeConnection(in1, input);
+				if (g.findConnection(in1, input)) {
+					g.removeConnection(in1, input);
+				}
+				else {
+					cout << "The connection does not exist." << endl;
+				}
 			}
 		}
 		else if (strcmp(input, "shortest") == 0) {//shortest
+			char* in1 = new char[10];
+			cout << "What is the node you want to start from?" << endl;
+			cin.get(input, 10);
+			cin.ignore(1000, '\n');
+			cout << "What is the node you want get to?" << endl;
+			cin.get(in1, 10);
+			cin.ignore(1000, '\n');
+			g.getShortestPath(input, in1);
 
+		}
+		else if (strcmp(input, "print") == 0) {
+			cout << "Nodes: " << endl;
+			g.printNodes();
+			cout << endl << "What is the name of the node that you want to see the connections for? " << endl;
+			cin.get(input, 10);
+			cin.ignore(1000, '\n');
+			if (g.findNode(input)) {
+				g.printConnections(input);
+			}
+			else {
+				cout << "That node does not exist in the graph" << endl;
+			}
 		}
 	}
 

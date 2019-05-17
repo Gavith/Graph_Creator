@@ -1,7 +1,9 @@
+//Map class that I might use in the future
+
 #include <vector>
 #include <functional>
 template<class K, class T>
-struct MapPair {
+struct MapPair {//for the actual entries
 	K first;
 	T second;
 
@@ -27,30 +29,30 @@ private:
 };
 
 template<class K, class T>
-inline auto Map<K, T>::begin()
+inline auto Map<K, T>::begin()//for iteration
 {
 	return entries.begin();
 }
 
 template<class K, class T>
-inline auto Map<K, T>::end()
+inline auto Map<K, T>::end()//for iteration
 {
 	return entries.end();
 }
 
 template<class K, class T>
-inline T& Map<K, T>::get(K key)
+inline T& Map<K, T>::get(K key)//returns the entry based on a key
 {
-	for (auto i = entries.begin(); i != entries.end(); i++) {
-		if ((*i).first == key) {
+	for (auto i = entries.begin(); i != entries.end(); i++) {//goes through all
+		if ((*i).first == key) {//if it matches
 			return (*i).second;
 		}
 	}
-	throw "Key does not exist.";
+	throw "Key does not exist.";//error handling cuz I cant return null
 }
 
 template<class K, class T>
-inline T Map<K, T>::pop(K key)
+inline T Map<K, T>::pop(K key)//same thing to get, just removes it
 {
 	for (auto i = entries.begin(); i != entries.end(); i++) {
 		if ((*i)->first == key) {
@@ -63,14 +65,14 @@ inline T Map<K, T>::pop(K key)
 }
 
 template<class K, class T>
-inline void Map<K, T>::put(K key, T item)
+inline void Map<K, T>::put(K key, T item)//a push function
 {
 	MapPair<K, T> temp = MapPair<K, T>(key, item);
 	entries.push_back(temp);
 }
 
 template<class K, class T>
-inline void Map<K, T>::set(K key, T item)
+inline void Map<K, T>::set(K key, T item)//setting so I can update
 {
 	for (auto i = entries.begin(); i != entries.end(); i++) {
 		if ((*i).first == key) {
@@ -78,17 +80,3 @@ inline void Map<K, T>::set(K key, T item)
 		}
 	}
 }
-
-
-/*
-template<class K, class T>
-inline T & Map<K, T>::operator[](K key)
-{
-	for (auto i = entries.begin(); i != entries.end(); i++) {
-		if (equal_to<K>((*i).first, key)) {
-			return (*i).second;
-		}
-	}
-//	ARG I CANT GET THIS TO WORK
-}
-*/

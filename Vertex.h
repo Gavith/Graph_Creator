@@ -21,6 +21,9 @@ public:
 	bool removeEdge(char* connected);
 	void addConnection(Vertex* next, int weight);
 	void removeConnection(Vertex* next);
+	bool findConnection(Vertex* vert);
+	bool findConnection(const char* vert);
+	vector<Edge*> getConnections();
 	void printConnections();
 private:
 

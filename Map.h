@@ -16,9 +16,10 @@ class Map {
 public:
 	auto begin();
 	auto end();
-	T get(K key);
+	T& get(K key);
 	T pop(K key);
 	void put(K key, T item);
+	void set(K key, T item);
 	//T &operator[](K key);
 
 private:
@@ -38,14 +39,14 @@ inline auto Map<K, T>::end()
 }
 
 template<class K, class T>
-inline T Map<K, T>::get(K key)
+inline T& Map<K, T>::get(K key)
 {
 	for (auto i = entries.begin(); i != entries.end(); i++) {
-		if ((*i)->first == key) {
-			return (*i)->second;
+		if ((*i).first == key) {
+			return (*i).second;
 		}
 	}
-	return NULL;
+	throw "Key does not exist.";
 }
 
 template<class K, class T>
@@ -58,7 +59,7 @@ inline T Map<K, T>::pop(K key)
 			return temp->second;
 		}
 	}
-	return NULL;
+	throw "Key does not exist.";
 }
 
 template<class K, class T>
@@ -66,6 +67,16 @@ inline void Map<K, T>::put(K key, T item)
 {
 	MapPair<K, T> temp = MapPair<K, T>(key, item);
 	entries.push_back(temp);
+}
+
+template<class K, class T>
+inline void Map<K, T>::set(K key, T item)
+{
+	for (auto i = entries.begin(); i != entries.end(); i++) {
+		if ((*i).first == key) {
+			(*i).second = item;
+		}
+	}
 }
 
 

@@ -64,9 +64,35 @@ void Vertex::removeConnection(Vertex * next)
 {
 	for (auto i = connections.begin(); i != connections.end(); i++) {
 		if ((*i)->next == next) {
+			delete *i;
 			connections.erase(i);
 		}
 	}
+}
+
+bool Vertex::findConnection(Vertex * vert)
+{
+	for (auto i = connections.begin(); i != connections.end(); i++) {
+		if ((*i)->next == vert) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Vertex::findConnection(const char * vert)
+{
+	for (auto i = connections.begin(); i != connections.end(); i++) {
+		if (strcmp((*i)->next->getName(), vert) == 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+vector<Edge*> Vertex::getConnections()
+{
+	return connections;
 }
 
 void Vertex::printConnections()

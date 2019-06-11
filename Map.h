@@ -25,7 +25,7 @@ public:
 	//T &operator[](K key);
 
 private:
-	vector<MapPair<K, T>> entries;
+	std::vector<MapPair<K, T>> entries;
 };
 
 template<class K, class T>
@@ -56,7 +56,7 @@ inline T Map<K, T>::pop(K key)//same thing to get, just removes it
 {
 	for (auto i = entries.begin(); i != entries.end(); i++) {
 		if ((*i)->first == key) {
-			MapPair temp = *i;
+			MapPair<K, T> temp = *i;
 			entries.erase(i);
 			return temp->second;
 		}

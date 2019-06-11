@@ -1,4 +1,3 @@
-#pragma once
 //Nothing fancy in this class, just data management
 class Vertex;
 

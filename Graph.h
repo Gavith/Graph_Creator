@@ -1,4 +1,3 @@
-#pragma once
 #include "Vertex.h"
 #include "Map.h"
 #include <iostream>
